@@ -69,6 +69,11 @@ export default {
     user-select: none;
 }
 
+.error .custom-select .selected {
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+}
+
 .custom-select .selected.open {
     border: 1px solid #B3B3B3;
 }

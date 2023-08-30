@@ -9,6 +9,18 @@
             </span>
         </a>
         <nav class="menu">
+            <button class="menu-toggler" @click="menuToggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_1_3896)">
+                        <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_1_3896">
+                            <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </button>
             <ul>
                 <li><a href="./">PREPAID & CREDIT OFFERS</a></li>
                 <li><a href="./">RESOURCES</a></li>
@@ -32,8 +44,10 @@ export default {
     },
     methods: {
         handleSearch() {
-            // Implement search logic here
             console.log('Search query:', this.searchQuery);
+        },
+        menuToggle() {
+            document.querySelector(".menu ul").classList.toggle("opened");
         }
     }
 };
@@ -87,6 +101,68 @@ export default {
     align-content: center;
     align-items: center;
 }
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 54px;
+}
+
+.menu li a {
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--font-color);
+    line-height: 24px;
+}
+
+.menu li a::after {
+    position: absolute;
+    content: "";
+    background-image: url("@/assets/img/keyboard-arrow-down.svg");
+    width: 24px;
+    height: 24px;
+}
+
+.menu-toggler {
+    display: none;
+    padding: 5px;
+    flex-shrink: 0;
+    background: #005898;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    font-size: 1em;
+    border: none;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+.search input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search button {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+
+.menu li a:hover {
+    text-decoration: underline;
+}
+
 
 @media screen and (max-width:1540px) {
     .logo img {
@@ -152,60 +228,42 @@ export default {
 @media screen and (max-width:715px) {
     .menu {
         display: flex;
-        gap: 54px;
+        gap: 14px;
         flex-direction: row;
         flex-wrap: wrap;
         align-content: center;
         align-items: center;
     }
-}
 
-.menu ul {
-    list-style: none;
-    display: flex;
-    gap: 54px;
-}
+    .search {
+        width: auto;
+    }
 
-.menu li a {
-    position: relative;
-    text-decoration: none;
-    font-weight: bold;
-    color: var(--font-color);
-    line-height: 24px;
-}
+    .search input {
+        width: auto;
+    }
 
-.menu li a::after {
-    position: absolute;
-    content: "";
-    background-image: url("@/assets/img/keyboard-arrow-down.svg");
-    width: 24px;
-    height: 24px;
-}
+    .menu ul {
+        display: none;
+    }
 
-.search {
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-}
+    .menu ul.opened {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        padding: 20px;
+        left: 0;
+        background: #fff;
+    }
 
-.search input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    outline: none;
-}
+    .menu-toggler {
+        display: flex;
+    }
 
-.search button {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    appearance: none;
-    border: none;
-    cursor: pointer;
-    background-color: var(--primary-color);
-}
-
-.menu li a:hover {
-    text-decoration: underline;
+    .search input {
+        display: none;
+    }
 }
 </style>
   

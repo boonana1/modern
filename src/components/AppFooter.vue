@@ -2,7 +2,13 @@
     <div class="primary-nav">
         <a class="logo" href="./">
             <img src="@/assets/img/footer-logo.svg" alt="Logo">
+            <img src="@/assets/img/logo-delim.svg" alt="" class="logo-delim">
+            <span class="slogan">
+                <dd>Find the best&nbsp;</dd>
+                <dd>credit card offers online</dd>
+            </span>
         </a>
+        <hr>
         <nav class="footer-menu">
             <ul>
                 <li><router-link to="/">About us</router-link></li>
@@ -91,9 +97,23 @@ export default {
     width: 100%;
 }
 
+.primary-nav hr {
+    display: none;
+}
+
 .logo img {
     height: 50px;
     width: auto;
+}
+
+.logo .logo-delim {
+    display: none;
+}
+
+.logo .slogan {
+    display: none;
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 .footer-menu {
@@ -174,6 +194,87 @@ hr {
     font-weight: 400;
     line-height: normal;
     padding-bottom: 60px;
+}
+
+@media screen and (max-width:1540px) {
+    .logo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .logo .slogan {
+        text-decoration: none;
+        color: var(--primary-color);
+    }
+}
+
+@media screen and (max-width:1140px) {
+
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .logo-delim {
+        display: none;
+    }
+
+    .logo .slogan {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .primary-nav {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 15px;
+        max-width: 430px;
+        word-break: break-word;
+        text-decoration: none;
+        height: 50px;
+    }
+
+    .logo img {
+        height: 30px;
+        width: auto;
+    }
+
+    .logo .logo-delim {
+        display: block;
+    }
+
+    .logo .slogan {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+    }
+
+    .footer-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .primary-nav hr {
+        display: block;
+    }
+
+    .second-nav {
+        gap: 30px;
+        flex-direction: column-reverse;
+    }
 }
 </style>
   

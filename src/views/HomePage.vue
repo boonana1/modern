@@ -6,7 +6,8 @@
                 <AppBreadcrumbs :breadcrumbs="breadcrumbs" />
                 <div class="container">
                     <h1>CONTACT US</h1>
-                    <img src="@/assets/img/line-1.svg" alt="" class="delimiter">
+                    <img src="@/assets/img/line-1.svg" alt="" class="delimiter right">
+                    <img src="@/assets/img/line-1-bottom.svg" alt="" class="delimiter bottom">
                     <dd class="description">
                         We welcome your comments, questions, or any request you may<br>
                         have! If you would like to contact our
@@ -21,30 +22,31 @@
                 <div class="form-container">
                     <form @submit.prevent="submitFeedback">
                         <div class="row">
-                            <label for="subject">Subject:</label>
+                            <label for="subject">Subject<span style="color:var(--error-color);">*</span>:</label>
                             <AppSelect
                                 :options="['Building Credit History', 'Bad Credit', 'Credit Cards for Business', 'General', 'Balance Transfer', 'Credit Card Rewards', 'Good Credit']"
                                 :default="'Select Subject'" class="select" @input="feedback.subject = $event" />
                         </div>
 
                         <div class="row">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" v-model="feedback.email" required>
+                            <label for="email">E-mail<span style="color:var(--error-color);">*</span>:</label>
+                            <input type="email" id="email" v-model="feedback.email">
                         </div>
 
                         <div class="row">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" v-model="feedback.name" required>
+                            <label for="name">Name<span style="color:var(--error-color);">*</span>:</label>
+                            <input type="text" id="name" v-model="feedback.name">
                         </div>
 
                         <div class="row">
                             <label for="phone">Phone number:</label>
-                            <input type="tel" id="phone" v-model="feedback.phone">
+                            <input type="tel" id="phone" @input="phoneMask" v-model="feedback.phone" maxlength="14"
+                                placeholder="1-XXX-XXX-XXXX">
                         </div>
 
                         <div class="row">
-                            <label for="question">Question:</label>
-                            <textarea id="question" v-model="feedback.question" required></textarea>
+                            <label for="question">Question<span style="color:var(--error-color);">*</span>:</label>
+                            <textarea id="question" v-model="feedback.question"></textarea>
                         </div>
                         <div class="submit">
                             <span>* required fields</span>
@@ -89,6 +91,7 @@
 import AppBreadcrumbs from "@/components/AppBreadcrumbs.vue";
 import AppSelect from '@/components/AppSelect.vue';
 import AppBanks from '@/components/AppBanks.vue';
+
 export default {
     components: {
         AppBreadcrumbs,
@@ -130,9 +133,57 @@ export default {
         submitFeedback() {
             // You can implement the feedback submission logic here
             console.log('Feedback submitted:', this.feedback);
+            console.log(`Questions from DreamCreditMaker: ${this.feedback.subject}`);
+            console.log(`Email: ${this.feedback.email}\nName: ${this.feedback.name}\nQuestion: ${this.feedback.question}\nPhone Number: ${this.feedback.phone}`);
             // Clear the form fields after submission
-            this.feedback.name = '';
-            this.feedback.comment = '';
+            if (this.feedback.subject == 'Select Subject' || this.feedback.email == "" || this.feedback.name == "" || this.feedback.question == "") {
+                document.querySelector(".form-container").classList.add("error");
+            } else {
+                // fetch('https://path-to-modern-mail.com/index.php', {
+                //     method: 'POST',
+                //     body: JSON.stringify({
+                //         "subject": this.feedback.subject,
+                //         "email": this.feedback.email,
+                //         "name": this.feedback.name,
+                //         "question": this.feedback.question,
+                //         "phone": this.feedback.phone
+                //     })
+                // }).then(res => res.json()).then(res => {
+                let formContainer = document.querySelector(".form-container");
+                let modal = document.createElement("div");
+                let modalHeading = document.createElement("h3");
+                let modalDesc = document.createElement("span");
+                let modalClose = document.createElement("button");
+                modal.classList.add("modal-success");
+                modalClose.classList.add("modal-success-close");
+                modalHeading.innerText = "Thanks for your question!";
+                modalDesc.innerText = "Our experts will reply you by email as soon as possible.";
+                modal.appendChild(modalHeading);
+                modal.appendChild(modalDesc);
+                modal.appendChild(modalClose);
+                document.addEventListener("click", function close(e) {
+                    if (e.target.className == "modal-success-close" || e.target.className != "modal-success") {
+                        modal.remove();
+                        document.removeEventListener("click", close);
+                    }
+                })
+                formContainer.appendChild(modal);
+                setTimeout(() => {
+                    modal.remove();
+                }, 3000);
+                formContainer.classList.remove("error");
+                this.feedback.name = '';
+                this.feedback.email = '';
+                this.feedback.question = '';
+                this.feedback.phone = '';
+                // })
+            }
+        },
+        phoneMask() {
+            let phone = this.feedback.phone;
+            phone = phone.replace(/\D/g, '');
+            phone = phone.replace(/^(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})$/, '$1-$2-$3-$4');
+            this.feedback.phone = phone;
         }
     }
 };
@@ -150,7 +201,7 @@ main {
 }
 
 .contact-us {
-    background: url("@/assets/img/bg.png") right/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
+    background: url("@/assets/img/bg.png") 65%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,12 +257,13 @@ main {
 }
 
 .feedback form .row {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     gap: 10px;
     max-width: 700px;
     width: 100%;
     align-items: stretch;
+    grid-template-columns: auto 1fr;
+    justify-items: end;
     justify-content: space-between;
 }
 
@@ -231,6 +283,12 @@ main {
     border: 1px solid #B3B3B3;
     line-height: 32px;
     padding-left: 10px;
+}
+
+.feedback .error form input:not(#phone),
+.feedback .error form textarea {
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
 }
 
 .feedback form textarea {
@@ -257,6 +315,8 @@ main {
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
+    max-width: 540px;
+    align-self: flex-end;
 }
 
 .feedback form .submit span {
@@ -303,6 +363,137 @@ main {
     justify-content: center;
     padding: 60px 20px;
     gap: 60px;
+}
+
+.contact-us .delimiter.right {
+    display: block;
+}
+
+.contact-us .delimiter.bottom {
+    display: none;
+}
+
+.modal-success {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: var(--modal-color);
+    text-align: center;
+    padding: 35px;
+}
+
+.modal-success h3 {
+    color: var(--error-color);
+    margin-bottom: 20px;
+}
+
+.modal-success-close {
+    position: absolute;
+    display: block;
+    background: url(http://localhost:8080/img/Vector.d21e7102.svg)no-repeat center, var(--modal-button-color);
+    width: 27px;
+    height: 27px;
+    border: none;
+    cursor: pointer;
+    left: 100%;
+    top: 0;
+
+}
+
+@media screen and (max-width:1540px) {}
+
+@media screen and (max-width:1080px) {
+    .feedback .form-container {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .app-breadcrumbs {
+        display: none;
+    }
+
+    .contact-us {
+        background: url("@/assets/img/bg.png") 70%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
+    }
+
+    .description {
+        max-width: 340px;
+    }
+}
+
+@media screen and (max-width:715px) {
+    .contact-us {
+        background: url("@/assets/img/bg.png") 45%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
+    }
+
+    .contact-us>* {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-us .container {
+        gap: 10px;
+    }
+
+    .contact-us .delimiter.right {
+        display: none;
+    }
+
+    .contact-us .delimiter.bottom {
+        display: block;
+    }
+
+    .app-breadcrumbs {
+        display: none;
+    }
+
+
+    .feedback {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 60px 0px;
+        gap: 60px;
+    }
+
+    .feedback>* {
+        justify-content: center;
+    }
+
+    .feedback form .row {
+        display: grid;
+        gap: 10px;
+        max-width: 700px;
+        width: 100%;
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+
+    .feedback form .submit {
+        align-self: center;
+    }
+
+    .feedback form .row label+* {
+        max-width: 100%;
+    }
+
+    .modal-success {
+        max-width: 290px;
+        width: 100%;
+    }
+
+    .modal-success h3 {
+        margin-bottom: 10px;
+    }
+
+    .modal-success-close {
+        left: 90.5%;
+    }
 }
 </style>
   
