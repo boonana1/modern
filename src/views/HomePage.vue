@@ -131,11 +131,9 @@ export default {
     },
     methods: {
         submitFeedback() {
-            // You can implement the feedback submission logic here
             console.log('Feedback submitted:', this.feedback);
             console.log(`Questions from DreamCreditMaker: ${this.feedback.subject}`);
             console.log(`Email: ${this.feedback.email}\nName: ${this.feedback.name}\nQuestion: ${this.feedback.question}\nPhone Number: ${this.feedback.phone}`);
-            // Clear the form fields after submission
             if (this.feedback.subject == 'Select Subject' || this.feedback.email == "" || this.feedback.name == "" || this.feedback.question == "") {
                 document.querySelector(".form-container").classList.add("error");
             } else {
@@ -190,7 +188,6 @@ export default {
 </script>
   
 <style>
-/* Add your CSS styles here */
 .app-container {
     margin: 0;
     padding: 0;
