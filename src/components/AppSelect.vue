@@ -114,10 +114,13 @@ export default {
     border-bottom: 1px solid #B3B3B3;
     position: absolute;
     background-color: #fff;
-    padding-left: 10px;
     left: 0;
     right: 0;
     z-index: 1;
+}
+
+.custom-select .items>div {
+    padding-left: 10px;
 }
 
 .custom-select .items div {
