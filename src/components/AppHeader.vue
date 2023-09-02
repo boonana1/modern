@@ -196,6 +196,7 @@ export default {
 
     .menu ul {
         font-size: 14px;
+        gap: 44px;
     }
 
     .app-header {
@@ -229,10 +230,6 @@ export default {
         align-items: stretch;
     }
 
-    .menu ul {
-        gap: 20px;
-    }
-
     .menu li a {
         font-size: 14px;
         line-height: 14px;
@@ -240,12 +237,13 @@ export default {
 
     .menu li a::after {
         background-size: contain;
-        width: 14px;
-        height: 14px;
+        width: 24px;
+        height: 24px;
+        top: -5px;
     }
 
     .search {
-        width: 320px;
+        width: 350px;
     }
 
     .search input {

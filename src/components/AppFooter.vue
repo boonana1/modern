@@ -130,7 +130,7 @@ export default {
 .footer-menu ul {
     list-style: none;
     display: flex;
-    gap: 54px;
+    gap: 30px;
     row-gap: 12px;
     flex-direction: row;
     flex-wrap: wrap;
@@ -246,7 +246,8 @@ hr {
     }
 
     .footer-menu ul {
-        gap: 30px;
+        gap: 12px;
+        column-gap: 30px;
     }
 
     .note {
