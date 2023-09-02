@@ -543,6 +543,7 @@ footer {
         text-align: center;
         padding: 30px 0px;
         gap: 20px;
+        margin: 0 auto;
     }
 
     .feedback>* {
