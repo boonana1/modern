@@ -309,7 +309,7 @@ hr {
         text-align: center;
     }
 
-    .social ul[data-v-fdb56dc8] {
+    .social ul {
         gap: 20px;
         justify-content: center;
         flex-wrap: wrap;

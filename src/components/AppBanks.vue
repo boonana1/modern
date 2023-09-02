@@ -116,7 +116,7 @@ export default {
         justify-items: center;
     }
 
-    .banks-container>div[data-v-2446a946] {
+    .banks-container>div {
         justify-content: normal;
         gap: 10px;
         max-width: 263px;
