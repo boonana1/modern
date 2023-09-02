@@ -2,7 +2,7 @@
     <div class="app-breadcrumbs">
         <span v-for="(crumb, i) in breadcrumbs" :key="i">
             <router-link :to="crumb.route">{{ crumb.label }}</router-link>
-            <span v-if="i < breadcrumbs.length - 1"> > </span>
+            <img v-if="i < breadcrumbs.length - 1" src="@/assets/img/chevron-right.svg" alt="">
         </span>
     </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 <style scoped>
 .app-breadcrumbs {
     margin: 10px 0;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .app-breadcrumbs>span {
@@ -33,7 +33,7 @@ export default {
 }
 
 .app-breadcrumbs a {
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--font-color);
 }
 
@@ -46,6 +46,13 @@ export default {
     text-align: center;
     width: 16px;
     height: 16px;
+}
+
+@media screen and (max-width:1080px) {
+
+    .app-breadcrumbs {
+        display: none;
+    }
 }
 </style>
   

@@ -78,8 +78,11 @@ export default {
     text-decoration: none;
 }
 
+.logo img:first-child {
+    height: 41px;
+}
+
 .logo img {
-    height: 50px;
     width: auto;
 }
 
@@ -89,7 +92,6 @@ export default {
 }
 
 .logo img {
-    height: 50px;
     width: auto;
 }
 
@@ -106,6 +108,7 @@ export default {
     list-style: none;
     display: flex;
     gap: 54px;
+    font-size: 16px;
 }
 
 .menu li a {
@@ -141,12 +144,14 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
+    width: 266px;
 }
 
 .search input {
     padding: 5px;
     border: 1px solid #ccc;
     outline: none;
+    width: 100%;
 }
 
 .search button {
@@ -166,7 +171,6 @@ export default {
 
 @media screen and (max-width:1540px) {
     .logo img {
-        height: 50px;
         width: auto;
     }
 
@@ -186,8 +190,16 @@ export default {
 }
 
 @media screen and (max-width:1140px) {
+    .logo img:first-child {
+        height: 39px;
+    }
+
+    .menu ul {
+        font-size: 14px;
+    }
+
     .app-header {
-        padding-right: 40px;
+        padding: 15px 22px;
     }
 
     .logo {
@@ -195,6 +207,7 @@ export default {
         align-items: flex-start;
         justify-content: flex-start;
         text-align: left;
+        gap: 5px;
     }
 
     .logo-delim {
@@ -209,15 +222,30 @@ export default {
 
     .menu {
         display: flex;
-        gap: 9px;
+        gap: 4px;
         flex-direction: column;
         flex-wrap: wrap;
         align-content: center;
         align-items: stretch;
     }
 
+    .menu ul {
+        gap: 20px;
+    }
+
+    .menu li a {
+        font-size: 14px;
+        line-height: 14px;
+    }
+
+    .menu li a::after {
+        background-size: contain;
+        width: 14px;
+        height: 14px;
+    }
+
     .search {
-        width: 100%;
+        width: 320px;
     }
 
     .search input {
@@ -226,6 +254,18 @@ export default {
 }
 
 @media screen and (max-width:715px) {
+    .logo img:first-child {
+        height: 32px;
+    }
+
+    .logo .slogan {
+        display: none;
+    }
+
+    .app-header {
+        padding: 16px 20px;
+    }
+
     .menu {
         display: flex;
         gap: 14px;

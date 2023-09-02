@@ -47,9 +47,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: justify;
+  text-align: left;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 nav {
@@ -63,5 +63,22 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #fff;
+}
+
+@media screen and (max-width:1140px) {
+  header {
+    padding: 0;
+  }
+
+  footer {
+    padding-bottom: 0;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width:715px) {
+  header {
+    padding: 0;
+  }
 }
 </style>

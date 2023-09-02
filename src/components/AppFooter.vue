@@ -84,6 +84,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
+    margin: 10px 16px;
     max-width: 1440px;
     width: 100%;
 }
@@ -102,7 +103,7 @@ export default {
 }
 
 .logo img {
-    height: 50px;
+    height: 41px;
     width: auto;
 }
 
@@ -166,6 +167,10 @@ export default {
     align-items: center;
 }
 
+.social ul:first-child {
+    font-size: 18px;
+}
+
 .social li a {
     position: relative;
     text-decoration: none;
@@ -197,10 +202,6 @@ hr {
 }
 
 @media screen and (max-width:1540px) {
-    .logo img {
-        height: 50px;
-        width: auto;
-    }
 
     .logo .slogan {
         text-decoration: none;
@@ -209,6 +210,16 @@ hr {
 }
 
 @media screen and (max-width:1140px) {
+    .primary-nav {
+        gap: 20px;
+        padding-top: 8px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .second-nav {
+        padding: 0px 20px;
+    }
 
     .logo {
         flex-direction: column;
@@ -217,12 +228,29 @@ hr {
         text-align: left;
     }
 
+    .logo img {
+        height: 41px;
+        width: auto;
+    }
+
     .logo-delim {
         display: none;
     }
 
     .logo .slogan {
         font-size: 12px;
+    }
+
+    .footer-menu {
+        max-width: 250px;
+    }
+
+    .footer-menu ul {
+        gap: 30px;
+    }
+
+    .note {
+        padding-bottom: 40px;
     }
 }
 
@@ -233,6 +261,10 @@ hr {
         padding: 0;
     }
 
+    .primary-nav>*:not(hr) {
+        padding: 0px 16px;
+    }
+
     .logo {
         display: flex;
         flex-direction: row;
@@ -240,7 +272,7 @@ hr {
         align-items: center;
         justify-content: flex-start;
         text-align: left;
-        gap: 15px;
+        gap: 10px;
         max-width: 430px;
         word-break: break-word;
         text-decoration: none;
@@ -274,6 +306,21 @@ hr {
     .second-nav {
         gap: 30px;
         flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .social ul[data-v-fdb56dc8] {
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .social ul :first-child {
+        width: 100%;
+    }
+
+    .note {
+        padding-bottom: 30px;
     }
 }
 </style>

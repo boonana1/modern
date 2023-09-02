@@ -18,8 +18,8 @@
                 </div>
             </section>
             <section class="feedback">
-                <h2>WRITE US</h2>
                 <div class="form-container">
+                    <h2>WRITE US</h2>
                     <form @submit.prevent="submitFeedback">
                         <div class="row">
                             <label for="subject">Subject<span style="color:var(--error-color);">*</span>:</label>
@@ -53,21 +53,21 @@
                             <button type="submit">SEND</button>
                         </div>
                     </form>
-                    <dd>
-                        All information submitted on this form will remain completely confidential. We <b>DO NOT sell</b>
-                        names or
-                        email addresses to third parties.<br><br>
-
-                        Please review our privacy policy for further information.<br><br>
-
-                        Please note: <br>
-                        We <b>DO NOT issue credit cards</b> or have any type of personal credit card account
-                        information. If you
-                        have questions pertaining to an existing credit card account, please contact the bank that issued
-                        the credit card directly.
-
-                    </dd>
                 </div>
+                <dd>
+                    All information submitted on this form will remain completely confidential. We <b>DO NOT sell</b>
+                    names or
+                    email addresses to third parties.<br><br>
+
+                    Please review our privacy policy for further information.<br><br>
+
+                    Please note: <br>
+                    We <b>DO NOT issue credit cards</b> or have any type of personal credit card account
+                    information. If you
+                    have questions pertaining to an existing credit card account, please contact the bank that issued
+                    the credit card directly.
+
+                </dd>
             </section>
             <section class="contacts">
                 <img src="@/assets/img/mail.svg" alt="" class="mail">
@@ -193,9 +193,6 @@ export default {
     padding: 0;
 }
 
-main {
-    padding: 20px 0;
-}
 
 .contact-us {
     background: url("@/assets/img/bg.png") 65%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
@@ -221,11 +218,13 @@ main {
 
 .feedback {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: left;
-    padding: 60px 0px;
+    padding: 60px 20px;
     gap: 60px;
+    max-width: 1440px;
+    width: 100%;
 }
 
 .feedback h2 {
@@ -234,21 +233,29 @@ main {
 
 .feedback>* {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 1440px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 0px;
+    max-width: 700px;
     width: 100%;
-    padding: 5px 20px;
 }
 
 .feedback .form-container {
     gap: 60px;
 }
 
+.feedback .form-container label {
+    font-size: 18px;
+}
+
+.feedback .form-container label+* {
+    font-size: 16px;
+}
+
 .feedback form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     max-width: 700px;
     width: 100%;
 }
@@ -266,6 +273,7 @@ main {
 
 .feedback form label {
     max-width: 140px;
+    line-height: 32px;
 }
 
 .feedback form input,
@@ -280,6 +288,10 @@ main {
     border: 1px solid #B3B3B3;
     line-height: 32px;
     padding-left: 10px;
+}
+
+.feedback form input::placeholder {
+    color: #B3B3B3;
 }
 
 .feedback .error form input:not(#phone),
@@ -399,12 +411,58 @@ main {
 
 }
 
+.contact-us dd,
+.feedback dd {
+    font-size: 18px;
+}
+
+footer {
+    font-size: 14px;
+}
+
 @media screen and (max-width:1540px) {}
 
 @media screen and (max-width:1080px) {
+
+    .app-breadcrumbs {
+        display: none;
+    }
+
+    .feedback {
+        padding: 40px 0px;
+        gap: 40px;
+        flex-direction: column;
+    }
+
+    .feedback>* {
+        padding: 0px 20px;
+    }
+
+    .contact-us dd,
+    .feedback dd {
+        font-size: 16px;
+    }
+
+    .feedback dd {
+        max-width: unset;
+        width: 100%;
+        display: block;
+    }
+
     .feedback .form-container {
         flex-direction: column;
-        gap: 60px;
+        gap: 40px;
+        align-items: stretch;
+        max-width: unset;
+    }
+
+    .feedback form {
+        gap: 20px;
+        max-width: unset;
+    }
+
+    .feedback form .row {
+        max-width: unset;
     }
 
     .app-breadcrumbs {
@@ -415,12 +473,45 @@ main {
         background: url("@/assets/img/bg.png") 70%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
     }
 
+    .contact-us .container {
+        padding: 25px 20px;
+        gap: 20px;
+    }
+
     .description {
         max-width: 340px;
+    }
+
+    .banks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 60px;
+        gap: 40px;
     }
 }
 
 @media screen and (max-width:715px) {
+    .feedback .form-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .feedback .form-container label {
+        font-size: 14px;
+        line-height: 14px;
+    }
+
+    .feedback .form-container label+* {
+        font-size: 14px;
+    }
+
+    .contact-us dd,
+    .feedback dd {
+        font-size: 14px;
+    }
+
     .contact-us {
         background: url("@/assets/img/bg.png") 45%/cover, lightgray 333.054px -9.515px / 71.042% 106.479% no-repeat;
     }
@@ -433,6 +524,7 @@ main {
     }
 
     .contact-us .container {
+        padding: 30px 16px;
         gap: 10px;
     }
 
@@ -444,22 +536,21 @@ main {
         display: block;
     }
 
-    .app-breadcrumbs {
-        display: none;
-    }
-
-
     .feedback {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 60px 0px;
-        gap: 60px;
+        padding: 30px 0px;
+        gap: 20px;
     }
 
     .feedback>* {
         justify-content: center;
+    }
+
+    .feedback form {
+        gap: 20px;
     }
 
     .feedback form .row {
@@ -473,6 +564,8 @@ main {
 
     .feedback form .submit {
         align-self: center;
+        align-items: center;
+        max-width: unset;
     }
 
     .feedback form .row label+* {
@@ -490,6 +583,29 @@ main {
 
     .modal-success-close {
         left: 90.5%;
+    }
+
+    .contacts {
+        padding: 28px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .contacts {
+        text-align: center;
+    }
+
+    .banks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 10px;
+        gap: 20px;
     }
 }
 </style>

@@ -95,10 +95,10 @@ export default {
 .custom-select .selected:after {
     position: absolute;
     content: "";
-    top: 1px;
-    right: 0;
-    width: 32px;
-    height: 100%;
+    top: 6px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
     background: url("@/assets/img/keyboard-arrow-down.svg") center/cover;
     filter: brightness(5);
     transform: rotate(0deg);
