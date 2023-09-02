@@ -225,6 +225,7 @@ export default {
     gap: 60px;
     max-width: 1440px;
     width: 100%;
+    margin: 0 auto;
 }
 
 .feedback h2 {
